@@ -9,7 +9,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 const Stack = createStackNavigator();
 
 // Create a component
-export default  App = () => (
+function App() {
+  return (
   <NavigationContainer>
     <Stack.Navigator>
       <Stack.Screen
@@ -24,5 +25,7 @@ export default  App = () => (
       />
     </Stack.Navigator>
   </NavigationContainer>
-);
+  );
+}
 
+export default App;
