@@ -2,8 +2,11 @@ import React from 'react';
 import { View } from 'react-native';
 
 const Card = (props) => {
+  const {containerStyle}
+  = styles;
+  
   return (
-    <View style={styles.containerStyle}>
+    <View style={{...containerStyle, ...props.styles}}>
       {props.children}
     </View>
   );
@@ -22,7 +25,9 @@ const styles = {
     elevation: 1,
     marginLeft: 5,
     marginRight: 5,
-    marginTop: 10
+    marginTop: 10,
+    flex: 1,
+    aspectRatio:1,
   }
 };
 
