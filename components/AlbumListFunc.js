@@ -1,5 +1,5 @@
-import React, {Component, useEffect, useState} from 'react';
-import {ScrollView, Text, View} from 'react-native';
+import { useEffect, useState } from 'react';
+import { FlatList, Text, View } from 'react-native';
 import axios from 'axios';
 import AlbumDetail from './AlbumDetail';
 
@@ -15,23 +15,28 @@ const AlbumList = (props) => {
             );
     });
 
-    const renderAlbums = () => {
-        return photoset.map((album) => (
-        <AlbumDetail
-            navigation={props.navigation}
-            key={album.id}
-            title={album.title._content}
-            albumId={album.id}
-        />
-        ));
+    const renderAlbums = ({ item }) => {
+        return (
+            <AlbumDetail
+                navigation={props.navigation}
+                key={item.id}
+                title={item.title._content}
+                albumId={item.id}
+            />
+        );
     }
+
 
     if (!photoset) {
         return <Text>Loading...</Text>;
     }
     return (
-        <View style={{flex: 1}}>
-        <ScrollView>{renderAlbums()}</ScrollView>
+        <View style={{ flex: 1 }}>
+            <FlatList
+                data={photoset}
+                renderItem={renderAlbums}
+                keyExtractor={item => item.id}
+            />
         </View>
     );
 }
