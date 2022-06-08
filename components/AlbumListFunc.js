@@ -5,7 +5,7 @@ import AlbumDetail from './AlbumDetail';
 
 const AlbumList = (props) => {
     const [photoset, setPhotoset] = useState(null);
-    const [window, setWindow]= useState(Dimensions.get("window"))
+    const [window, setWindow] = useState(Dimensions.get("window"))
     const [colNumber, setColNumber] = useState(3);
 
     useEffect(() => {
@@ -13,7 +13,7 @@ const AlbumList = (props) => {
             .get(
                 'https://api.flickr.com/services/rest/?method=flickr.photosets.getList&api_key=6e8a597cb502b7b95dbd46a46e25db8d&user_id=137290658%40N08&format=json&nojsoncallback=1',
             )
-            .then((response) =>{
+            .then((response) => {
                 setPhotoset(response.data.photosets.photoset);
                 console.dir(response.data.photosets.photoset);
             });
@@ -36,15 +36,11 @@ const AlbumList = (props) => {
                 key={item.id}
                 title={item.title._content}
                 albumId={item.id}
-                styleCustom={{ maxWidth: 200 }}
+                styleCustom={{ maxWidth: colNumber > 1 ? 200 : null }}
             />
         );
     }
 
-
-    if (!photoset) {
-        return <Text>Loading...</Text>;
-    }
     return (
         <View>
             <FlatList
@@ -53,7 +49,10 @@ const AlbumList = (props) => {
                 keyExtractor={item => item.id}
                 numColumns={colNumber}
                 key={colNumber}
-                columnWrapperStyle={colNumber > 1? { flex: 1, justifyContent: "center" }: ''}                                           
+                columnWrapperStyle={colNumber > 1 ? { flex: 1, justifyContent: "center" } : null}
+                ListEmptyComponent={<Text>Loading...</Text>}
+            //contentContainerStyle={{ justifyContent: "center" }}
+            //style={{ flex: 1 }}
             />
         </View>
     );
