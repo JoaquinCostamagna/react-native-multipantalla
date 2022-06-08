@@ -1,4 +1,4 @@
-import { ScrollView, Text, View } from "react-native";
+import { FlatList, Text, View } from "react-native";
 import axios from "axios";
 import PhotoDetail from "./PhotoDetail";
 import { useEffect, useState } from "react";
@@ -16,15 +16,17 @@ const PhotoList = (props) => {
     getPhotos();
   }, []);
 
-  const renderAlbums = () => {
-    return photos.map((photo) => (
+  // La funcion RenderAlbums recibe el item ya iterado por el Flatlist
+  // no necesita el .map
+  const renderAlbums = ({ item }) => {
+    return (
       <PhotoDetail
-        key={photo.title}
-        title={photo.title}
-        imageUrl={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
+        key={item.title}
+        title={item.title}
+        imageUrl={`https://farm${item.farm}.staticflickr.com/${item.server}/${item.id}_${item.secret}.jpg`}
       />
-    ));
-  };
+    );
+  }
 
   if (!photos) {
     return (
@@ -35,7 +37,11 @@ const PhotoList = (props) => {
   }
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView>{renderAlbums()}</ScrollView>
+      <FlatList
+        data={photos}
+        renderItem={renderAlbums}
+        keyExtractor={(item) => item.id}
+      />
     </View>
   );
 };
