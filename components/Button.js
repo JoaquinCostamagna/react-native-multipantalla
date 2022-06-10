@@ -3,7 +3,7 @@ import { Text, TouchableOpacity } from 'react-native';
 
 const Button = ({ onPress, children, style }) => {
   const { buttonStyle, textStyle } = styles;
-
+//mapeo las propiedades default del Button y la propiedad style que se le pasó
   return (
     <TouchableOpacity onPress={onPress} style={{...buttonStyle, ...style}}>
       <Text style={textStyle}>

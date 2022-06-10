@@ -1,6 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 
+//mapeo las propiedades default de Card y la propiedad style que se le pasó
 const CardSection = (props) => {
   return (
     <View style={{ ...styles.containerStyle, ...props.style }}>

@@ -5,7 +5,9 @@ import { useEffect, useState } from "react";
 
 const PhotoList = (props) => {
   const [photos, setPhotos] = useState(null);
+  //Dimension lo usamos para tener acceso al tamaño de la pantalla y poder calcular la cantidad de columnas
   const [window, setWindow] = useState(Dimensions.get("window"));
+  //estado con la cantidad de columnas mostradas (por defecto 3)
   const [colNumber, setColNumber] = useState(3);
 
   const getPhotos = async () => {
@@ -17,13 +19,13 @@ const PhotoList = (props) => {
 
   useEffect(() => {
     getPhotos();
-
+    //agrego un eventListener a dimentions para que se actualice cuando cambie el tamaño de la pantalla
     const subscription = Dimensions.addEventListener("change", ({ window }) => {
-      setColNumber(Math.floor(window.width / 310));
+      setColNumber(Math.floor(window.width / 310)); //310 es el ancho de cada item con su margen
       setWindow(window);
     });
     setColNumber(Math.floor(window.width / 310));
-    return () => subscription?.remove();
+    return () => subscription?.remove(); //al finalizar el componente, elimino el eventListener
   }, []);
 
   // La funcion RenderAlbums recibe el item ya iterado por el Flatlist

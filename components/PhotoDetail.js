@@ -5,7 +5,7 @@ import CardSection from "./CardSection";
 
 const PhotoDetail = ({ title, imageUrl }) => {
   const { imageStyle, headerTextStyle } = styles;
-
+//Modificamos el detalle de la foto para que al tocar la misma la abriera
   return (
     <TouchableOpacity onPress={() => Linking.openURL(imageUrl)}>
       <Card>

@@ -3,9 +3,9 @@ import { View } from "react-native";
 
 const Card = (props) => {
   const { containerStyle } = styles;
-
+  //mapeo las propiedades default de Card y la propiedad style que se le pasó
   return (
-    <View style={{ ...containerStyle, ...props.styles }}>{props.children}</View>
+    <View style={{ ...containerStyle, ...props.style }}>{props.children}</View>
   );
 };
 
