@@ -1,14 +1,11 @@
-import React from 'react';
-import { View } from 'react-native';
+import React from "react";
+import { View } from "react-native";
 
 const Card = (props) => {
-  const {containerStyle}
-  = styles;
-  
+  const { containerStyle } = styles;
+
   return (
-    <View style={{...containerStyle, ...props.styles}}>
-      {props.children}
-    </View>
+    <View style={{ ...containerStyle, ...props.styles }}>{props.children}</View>
   );
 };
 
@@ -16,9 +13,9 @@ const styles = {
   containerStyle: {
     borderWidth: 1,
     borderRadius: 2,
-    borderColor: '#ddd',
+    borderColor: "#ddd",
     borderBottomWidth: 0,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
@@ -27,8 +24,7 @@ const styles = {
     marginRight: 5,
     marginTop: 10,
     flex: 1,
-
-  }
+  },
 };
 
 export default Card;
