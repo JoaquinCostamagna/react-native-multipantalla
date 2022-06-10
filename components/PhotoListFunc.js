@@ -19,11 +19,11 @@ const PhotoList = (props) => {
     const subscription = Dimensions.addEventListener(
       "change",
       ({ window }) => {
-        setColNumber(Math.floor(window.width / 210));
+        setColNumber(Math.floor(window.width / 310));
         setWindow(window);
       }
     );
-    setColNumber(Math.floor(window.width / 210));
+    setColNumber(Math.floor(window.width / 310));
     return () => subscription?.remove();
   }, []);
 
@@ -48,7 +48,6 @@ const PhotoList = (props) => {
         key={colNumber}
         columnWrapperStyle={colNumber > 1 ? { flex: 1, justifyContent: "center" } : null}
         ListEmptyComponent={<Text>Loading...</Text>}
-
       />
     </View>
   );

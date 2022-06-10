@@ -15,7 +15,6 @@ const AlbumList = (props) => {
             )
             .then((response) => {
                 setPhotoset(response.data.photosets.photoset);
-                console.dir(response.data.photosets.photoset);
             });
 
         const subscription = Dimensions.addEventListener(
@@ -36,7 +35,7 @@ const AlbumList = (props) => {
                 key={item.id}
                 title={item.title._content}
                 albumId={item.id}
-                styleCustom={{ maxWidth: colNumber > 1 ? 200 : null }}
+                styleCustom={{ maxWidth: colNumber > 1 ? 200 : null, aspectRatio:1 }}
             />
         );
     }

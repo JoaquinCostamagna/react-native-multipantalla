@@ -2,8 +2,8 @@ import "react-native-gesture-handler";
 import React from "react";
 import PhotoList from "./components/PhotoListFunc";
 import AlbumList from './components/AlbumListFunc';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 

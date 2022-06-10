@@ -23,7 +23,6 @@ const AlbumDetail = ({ navigation, title, albumId, styleCustom }) => {
         const item = response.data.photoset.photo[0];
         const url = `https://farm${item.farm}.staticflickr.com/${item.server}/${item.id}_${item.secret}.jpg`;
         setPhoto(url);
-        console.log(photoUrl);
       });
   },[])
 
@@ -41,7 +40,7 @@ const AlbumDetail = ({ navigation, title, albumId, styleCustom }) => {
         <Button
           onPress={() => navigation.navigate('photoList', { albumId: albumId })}
           style={buttonStyle}>
-          <FontAwesomeIcon icon={faAngleRight} />
+          <FontAwesomeIcon icon={faAngleRight}/>
         </Button>
 
 
@@ -73,9 +72,12 @@ const styles = {
     marginRight: 10,
   },
   imageStyle: {
-    height: 300,
+    maxheight: 300,
     flex: 1,
-    width: null,
+    width: 'auto',
+    overflow: 'hidden',
+    maxWidth: 200,
+    aspectRatio:1
   },
   buttonStyle: {
     marginTop: 1,

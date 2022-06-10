@@ -27,7 +27,7 @@ const styles = {
     marginRight: 5,
     marginTop: 10,
     flex: 1,
-    aspectRatio:1,
+
   }
 };
 
