@@ -1,10 +1,12 @@
-import { FlatList, Text, View } from "react-native";
+import { FlatList, Text, View, Dimensions } from "react-native";
 import axios from "axios";
 import PhotoDetail from "./PhotoDetail";
 import { useEffect, useState } from "react";
 
 const PhotoList = (props) => {
   const [photos, setPhotos] = useState(null);
+  const [window, setWindow] = useState(Dimensions.get("window"))
+  const [colNumber, setColNumber] = useState(3);
 
   useEffect(() => {
     const getPhotos = async () => {
@@ -14,6 +16,15 @@ const PhotoList = (props) => {
       setPhotos(response.data.photoset.photo);
     };
     getPhotos();
+    const subscription = Dimensions.addEventListener(
+      "change",
+      ({ window }) => {
+        setColNumber(Math.floor(window.width / 210));
+        setWindow(window);
+      }
+    );
+    setColNumber(Math.floor(window.width / 210));
+    return () => subscription?.remove();
   }, []);
 
   // La funcion RenderAlbums recibe el item ya iterado por el Flatlist
@@ -41,6 +52,11 @@ const PhotoList = (props) => {
         data={photos}
         renderItem={renderAlbums}
         keyExtractor={(item) => item.id}
+        numColumns={colNumber}
+        key={colNumber}
+        columnWrapperStyle={colNumber > 1 ? { flex: 1, justifyContent: "center" } : null}
+        ListEmptyComponent={<Text>Loading...</Text>}
+
       />
     </View>
   );
