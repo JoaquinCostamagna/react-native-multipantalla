@@ -38,14 +38,6 @@ const PhotoList = (props) => {
       />
     );
   }
-
-  if (!photos) {
-    return (
-      <View style={{ flex: 1 }}>
-        <Text>Loading...</Text>
-      </View>
-    );
-  }
   return (
     <View style={{ flex: 1 }}>
       <FlatList
